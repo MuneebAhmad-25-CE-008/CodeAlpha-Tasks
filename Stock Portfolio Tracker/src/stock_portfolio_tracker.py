@@ -143,8 +143,11 @@ def save_to_txt(portfolio, total_value, stock_details, filename="portfolio_summa
         
         print(f"✓ Portfolio saved to '{filename}'")
         return True
-    except Exception as e:
+    except (IOError, OSError, PermissionError) as e:
         print(f"Error saving to text file: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error saving to text file: {e}")
         return False
 
 def save_to_csv(portfolio, stock_details, filename="portfolio_summary.csv"):
@@ -164,8 +167,11 @@ def save_to_csv(portfolio, stock_details, filename="portfolio_summary.csv"):
         
         print(f"✓ Portfolio saved to '{filename}'")
         return True
-    except Exception as e:
+    except (IOError, OSError, PermissionError) as e:
         print(f"Error saving to CSV file: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error saving to CSV file: {e}")
         return False
 
 def main():
